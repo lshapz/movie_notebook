@@ -1,0 +1,7 @@
+<h1><%= @movie.title %></h1>
+<p>Director: <%= @movie.director %></p>
+<p>Released: <%= @movie.year %></p>
+<p>My Rating: <%= @movie.my_rating %> </p>
+<% if @movie.link %>
+<p><a href="<%= @movie.link %>">View On IMDb</a></p>
+<% end %>

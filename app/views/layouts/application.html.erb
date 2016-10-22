@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Notebook</title>
+    <%= csrf_meta_tags %>
+    <style>
+    input[type=text] {
+      background-color: #ccffff ;
+      float: right;
+      margin-right: 84%;
+    }
+
+    </style>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+
+<h1> Find A Movie! </h1>
+<%= form_for @movie do |f| -%>
+<p><%= f.label :title, "Title" %><%= f.text_field :title %></p>
+<p><%= f.label :year, "Year" %> <%= f.text_field :year %></p>
+<p><%= f.submit "Search", :disable_with => 'Submiting...' %></p>
+<% end %>
