@@ -1,3 +1,8 @@
+<style>    
+</style>
+<h1> My Movie Notebook</h1>
+<ul>
 <% @movies.each do |movie| %>
-<%= link_to(movie.title, movie_path(movie.id)) %>
+<li><%= link_to(movie.title, movie_path(movie.id)) %></li>
 <% end %>
+</ul>

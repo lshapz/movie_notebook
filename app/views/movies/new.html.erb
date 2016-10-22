@@ -1,7 +1,17 @@
+<div id="errors"><% if @movie.errors.any? %>
+<ul><% @movie.errors.full_messages.each do |msg|  %>
+<li><%= msg %></li>
+<% end %>
+<br></br></ul>
+<% end %>
+</div>
 
-<h1> Find A Movie! </h1>
+<h1> Find A Movie By Searching IMDb! </h1>
 <%= form_for @movie do |f| -%>
 <p><%= f.label :title, "Title" %><%= f.text_field :title %></p>
 <p><%= f.label :year, "Year" %> <%= f.text_field :year %></p>
+<p><%= f.label :rating, "My Rating" %> <%= f.text_field :rating %></p>
 <p><%= f.submit "Search", :disable_with => 'Submiting...' %></p>
 <% end %>
+
+<p><small>if the search fails, you'll still create a new movie, with the director set to Alan Smithee. You can edit it with the real details.</small></p>

@@ -1,2 +1,8 @@
-<h1>Movies#edit</h1>
-<p>Find me in app/views/movies/edit.html.erb</p>
+<h1> Edit Movie Info</h1>
+<%= form_for @movie do |f| -%>
+<p><%= f.label :title, "Title" %><%= f.text_field :title %></p>
+<p><%= f.label :year, "Year" %> <%= f.text_field :year %></p>
+<p><%= f.label :rating, "My Rating" %> <%= f.text_field :rating %></p>
+<p><%= f.label :director, "Director" %><%= f.text_field :director, value: @movie.director.name %></p>
+<p><%= f.submit "Update", :disable_with => 'Updating...' %></p>
+<% end %>
