@@ -15,27 +15,26 @@ class MoviesController < ApplicationController
 
   def create
     @fake_dir = Director.find_or_create_by(name: "Alan Smithee")
+
     @movie = Movie.new(title: params[:movie][:title], year: params[:movie][:year], rating: params[:movie][:rating], director_id: @fake_dir.id)
     if !@movie.valid?
         render :new
     else
-      @moviesearch = Omdb.search(params[:movie][:title], params[:movie][:year], params[:movie][:rating])
-        if @moviesearch[:director_id].nil?
-          @movie2 = Movie.new(title: params[:movie][:title], year: params[:movie][:year], rating: params[:movie][:rating], director_id: @fake_dir.id)
-          @movie2.save
-          redirect_to movie_path(@movie2)
-        else
-          @movie = Movie.new(@moviesearch)
-          if !@movie.valid?
-            render :new
-          else
-            @movie.save
-            redirect_to movie_path(@movie)
-          end
-        end
-     end
-    # end
+      @moviesearch = Omdb.search(params[:movie][:title])#, params[:movie][:year], params[:movie][:rating])
+      render 'movies/choices'
+    end
   end
+
+  def choices
+    # byebug 
+    # @moviesearch 
+
+  end 
+
+  # def choices
+  #   erb :'/movies/choices'
+  # end 
+
 
   def edit
   end

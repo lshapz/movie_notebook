@@ -1,0 +1,9 @@
+<% form_tag('/movies/choices') do %>
+
+<% @moviesearch.each do |x| %>
+<p><%= label_tag "#{x[0]}" %>
+<%= check_box_tag "#{x[0]}", "#{x.join(",")}" %></p>
+<% end %>
+<%= submit_tag 'submit'%>
+
+<% end %>
