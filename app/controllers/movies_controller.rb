@@ -16,7 +16,6 @@ class MoviesController < ApplicationController
   def create
     @fake_dir = Director.find_or_create_by(name: "Alan Smithee")
     @movie = Movie.new(title: params[:movie][:title], year: params[:movie][:year], rating: params[:movie][:rating], director_id: @fake_dir.id)
-    
     if !@movie.valid?
         render :new
     else
@@ -27,7 +26,6 @@ class MoviesController < ApplicationController
             redirect_to movie_path(@movie2)
         else
             @movie = Movie.new(@moviesearch)
-            byebug
             if !@movie.valid?
               render :new
             else
@@ -43,15 +41,36 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie.update(movie_params)
-    @movie.save
-    redirect_to movie_path(@movie)
+    #byebug
+    @movie = Movie.find(params[:id])
+    permits = params[:movie].permit(:title, :year, :rating, :director_id)
+    permits[:director_id] = @movie.director_id
+    @movie2 = Movie.new(permits)
+    #@movie2 = Movie.new(movie_params)
+    #byebug
+     if !@movie2.valid?
+        @movie = Movie.find(params[:id])
+        render :edit
+    else
+      dir = Director.find_or_create_by(name: params[:movie][:director]) 
+      params[:movie][:director_id] = dir.id
+      parameter = params[:movie].permit(:title, :year, :rating, :director_id)
+      @movie.update(parameter)
+      redirect_to movie_path(@movie)
+    end
   end 
+
+  def destroy
+    @movies = Movie.all
+    @movie.destroy
+    redirect_to movies_url
+  end
+
 
   private
 
   def movie_params
-    params[:movie].permit(:title, :director_id, :year, :link, :rating)
+    params[:movie].permit(:title, :director_id, :year, :link, :rating, :director)
   end
 
     def set_movie!

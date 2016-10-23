@@ -5,3 +5,8 @@
 <li>  <%= link_to(movie.title, movie_path(movie.id)) %></li>
 <% end %>
 </ul>
+
+<% if @director.collab %>
+Has codirected with: <%= @director.collab %>
+<% end %>
+
