@@ -1,9 +1,10 @@
-<% form_tag('/movies/choices') do %>
-
+<%= form_tag choose_path do %>
+  
 <% @moviesearch.each do |x| %>
-<p><%= label_tag "#{x[0]}" %>
-<%= check_box_tag "#{x[0]}", "#{x.join(",")}" %></p>
+<p>  <%= x.title %> <%= x.year %> <%= radio_button_tag "title", x %></p>
 <% end %>
-<%= submit_tag 'submit'%>
-
+<p> <%= label_tag 'rating' %>
+<%= text_field_tag 'rating' %></p>
+<%= text_field_tag 'year' %>
+<p><%= submit_tag("Choose") %></p>
 <% end %>

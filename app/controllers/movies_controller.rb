@@ -26,6 +26,9 @@ class MoviesController < ApplicationController
   end
 
   def choices
+    byebug
+    @movie = Omdb.newify(title)
+
     # byebug 
     # @moviesearch 
 

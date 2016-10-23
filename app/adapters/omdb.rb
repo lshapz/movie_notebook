@@ -12,13 +12,16 @@ class Omdb
       @movie2.save
       redirect_to movie_path(@movie2)
     end 
-
-
     @coll = []
     @thing.first[1].each {|x| @coll <<  [x["Title"], x["Year"]] }
-    @coll 
-    #@another = coll.each_with_object([]) {|x, an| an << Movie.new(title: x[0], year: x[1])}
-    # #save = thing["Search"].each_with_object {|x, y| y << x["Title"], x["Year"]}
+    @another = @coll.each_with_object([]) {|x, an| an << Movie.new(title: x[0], year: x[1])}
+  end
+
+  def self.newify(title)
+    title2 = title.dup
+    title2.gsub!(/ /, "+")
+
+   # #save = thing["Search"].each_with_object {|x, y| y << x["Title"], x["Year"]}
     # if show['imdbID']
     #   @linkable = "http://imdb.com/title/" + show['imdbID']
     # end
@@ -35,7 +38,7 @@ class Omdb
     # end
     #     movie_params = {title: show['Title'], year: show['Year'], director_id: @director.id, link: @linkable, rating: @rating}
     #   # byebug
-  end
+  end 
 
 
 end
