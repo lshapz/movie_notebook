@@ -2,7 +2,7 @@ require 'byebug'
 class DirectorsController < ApplicationController
   
   def index
-    #byebug
+    # byebug
     @directors = Director.all
   end
 
