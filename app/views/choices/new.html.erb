@@ -1,0 +1,10 @@
+<%= form_tag choices_path do %>
+  
+<% @moviesearch.each do |x| %>
+<p>  <%= x.title %> <%= x.year %> <%= radio_button_tag "imdbID", x.imdbID %></p>
+
+<% end %>
+<p> <%= label_tag 'rating' %>
+<%= text_field_tag 'rating' %></p>
+<p><%= submit_tag("Choose") %></p>
+<% end %>
