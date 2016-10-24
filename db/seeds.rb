@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Director.create(name: "Alan Smithee")
-#Movie.create([{title: "Star Wars", director_id: 1}, {title: "Episode 8", director_id: 2}, {title: "Episode never", director_id: 1}])
+# Movie.create([{title: "Star Wars", director_id: 1}, {title: "Episode 8", director_id: 2}, {title: "Episode never", director_id: 1}])

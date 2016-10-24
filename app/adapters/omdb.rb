@@ -2,7 +2,7 @@ require 'byebug'
 class Omdb
 
   def self.search(title)
-    #@rating = rating
+    # @rating = rating
     title2 = title.dup
     title2.gsub!(/ /, "+")
     movie_hash = RestClient.get('http://www.omdbapi.com/?', params: {s: title, r: 'json'})  
@@ -13,11 +13,11 @@ class Omdb
       redirect_to movie_path(@movie2)
     end 
     @coll = []
-    #@thing.first[1].each {|x| @coll <<  [x["Title"], x["Year"], x] }
+    # @thing.first[1].each {|x| @coll <<  [x["Title"], x["Year"], x] }
     @coll = @thing["Search"].each_with_object([]) do |result, coll|
       coll << Choice.new(title: result["Title"], year: result["Year"], imdbID: result["imdbID"])
     end 
-    #@another = @thing.each_with_object([]) {|x, an| an << Choice.new(title: x[0], year: x[1], title: x[2])}
+    # @another = @thing.each_with_object([]) {|x, an| an << Choice.new(title: x[0], year: x[1], title: x[2])}
 
   end
 

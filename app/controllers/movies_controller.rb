@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
   def create
       @moviesearch = Omdb.search(params[:movie][:title])#, params[:movie][:year], params[:movie][:rating])
       render 'choices/new'
-    #end
+    # end
   end
 
   # def choices
@@ -33,6 +33,7 @@ class MoviesController < ApplicationController
 
 
   def edit
+  
   end
 
   def update
@@ -40,12 +41,14 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
     permits = params[:movie].permit(:title, :year, :rating, :director_id)
     permits[:director_id] = @movie.director_id
-    @movie2 = Movie.new(permits)
+    @movie.update(permits)
+    
     # @movie2 = Movie.new(movie_params)
     # byebug
-    if !@movie2.valid?
-      @movie = Movie.find(params[:id])
+    if !@movie.valid?
+      # @movie = Movie.find(params[:id])
       render :edit
+      # byebug
     else
       dir = Director.find_or_create_by(name: params[:movie][:director]) 
       params[:movie][:director_id] = dir.id
