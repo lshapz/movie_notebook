@@ -10,7 +10,6 @@ class MoviesController < ApplicationController
   end
 
   def new
-    @movie = Movie.new
     @choice = Choice.new
   end
 
@@ -21,9 +20,12 @@ class MoviesController < ApplicationController
     if @movie.save 
      redirect_to movie_path(@movie)
     else
-      @choice = Choice.new
-      render :new
-    end       # uses search API to give user selection options
+
+      @choice = Choice.find_or_create_by(title: params["title"], year: params["year"], imdbID: params["imdbID"])
+      @moviesearch = [@choice]
+      render 'choices/new'
+
+    end       
   end
 
   

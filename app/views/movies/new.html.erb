@@ -1,4 +1,4 @@
-<div id="errors"><% if @movie.errors.any? %>
+<div id="errors"><% if @movie && @movie.errors.any? %>
 <ul><% @movie.errors.full_messages.each do |msg|  %>
 <li><%= msg %></li>
 <% end %>
@@ -7,9 +7,10 @@
 </div>
 
 <h1> Find A Movie By Searching IMDb! </h1>
+
 <%= form_for @choice do |f| -%>
   <p><%= f.label :Title, "Title" %><%= f.text_field :title %></p>
-<p>  <%= f.submit "Search", :disable_with => 'Searching...' %></p>
+  <p><%= f.submit "Search", :disable_with => 'Searching...' %></p>
 <% end %>
 
 <small>you will be given a list of options before you add to your notebook, since we know how common some titles are!</small>
