@@ -34,6 +34,14 @@ gem 'rest-client'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem "rspec-rails"
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "better_errors"
+  gem "sprockets_better_errors"
+  gem "binding_of_caller"
+  gem "rack_session_access"
+  gem "database_cleaner"
 end
 
 group :development do

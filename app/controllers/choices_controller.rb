@@ -1,15 +1,16 @@
+require 'byebug'
 class ChoicesController < ApplicationController
   def new
 
   end
 
   def create
-    
     new_movie = Omdb.newify(params["imdbID"], params["rating"])
     @movie = Movie.new(new_movie)
     @movie.save 
     redirect_to movie_path(@movie)
   end 
+
 
 private
 

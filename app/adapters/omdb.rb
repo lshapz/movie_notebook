@@ -17,6 +17,7 @@ class Omdb
     @coll = @thing["Search"].each_with_object([]) do |result, coll|
       coll << Choice.new(title: result["Title"], year: result["Year"], imdbID: result["imdbID"])
     end 
+    # byebug
     # @another = @thing.each_with_object([]) {|x, an| an << Choice.new(title: x[0], year: x[1], title: x[2])}
 
   end
