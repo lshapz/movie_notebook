@@ -107,9 +107,39 @@ describe 'New Page' do
     #     expect(current_path).to eq('/movies/')
 
     #   end 
-    end 
+    # end 
 end
 
+describe 'Edit Page' do 
+  it 'is accessible from a movie show page' do
+  @director = Director.create!(name: "Alan Smithee")
+    @movie = Movie.create!(title: "Movie", director_id: @director.id, year: 1956, link: "http://imdb.com/title/tt0033467", rating: 4.75)
+    # byebug
+    visit movie_path(@movie)
+    expect(page).to have_link("Edit Me", href:edit_movie_path(@movie))
+  end
+
+  it 'renders the form with the existing values filled in' do
+    @director = Director.create!(name: "Alan Smithee")
+    @movie = Movie.create!(title: "Movie", director_id: @director.id, year: 1956, link: "http://imdb.com/title/tt0033467", rating: 4.75)
+    # byebug
+    visit edit_movie_path(@movie)
+    expect(page).to have_css("input#movie_title")
+  end
+
+  it 'outputs an error on invalid value' do
+    @director = Director.create!(name: "Alan Smithee")
+    @movie = Movie.create!(title: "Movie", director_id: @director.id, year: 1956, link: "http://imdb.com/title/tt0033467", rating: 4.75)
+    # byebug
+    visit edit_movie_path(@movie)
+    fill_in("movie[year]", :with => "10")
+    click_button('Update')
+    expect(page).to have_text ("is before movies existed")
+  end
+
+  #check for errors  
+
+end 
 
 
 end
