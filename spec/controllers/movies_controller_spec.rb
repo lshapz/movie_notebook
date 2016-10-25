@@ -89,6 +89,27 @@ describe 'Show page' do
   # end
 end
 
+describe 'New Page' do 
+    it 'displays the choices from IMDb' do
+        visit new_choice_path
+        fill_in('choice[title]', :with => "Citizen Kane")
+        click_button('Search')
+        expect(page).to have_text("Citizen Kane 1941")
+        expect(page).to have_text("Beyond Citizen Kane 1993")
+        #!! make a test helper with a method for this? 
+      end 
+
+    # it 'can choose one and initialize a movie'
+    #     it 'displays the choices from IMDb' do
+    #     visit new_choice_path
+    #     fill_in('choice[title]', :with => "Citizen Kane")
+    #     click_button('Search')
+    #     expect(current_path).to eq('/movies/')
+
+    #   end 
+    end 
+end
+
 
 
 end
