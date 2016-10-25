@@ -1,9 +1,8 @@
 <div id="errors">
-<% if @movie.errors.any? %>
+<% if @movie && @movie.errors.any? %>
 <ul><% @movie.errors.full_messages.each do |msg|  %>
 <li><%= msg %></li>
-<% end %>
-<br></br></ul>
+<% end %></ul>
 <% end %>
 </div>
 

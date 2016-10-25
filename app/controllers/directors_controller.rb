@@ -2,8 +2,8 @@ require 'byebug'
 class DirectorsController < ApplicationController
   
   def index
-    # byebug
-    @directors = Director.all
+    unalpha = Director.all
+    @directors = unalpha.sort_by {|director| director.name}
   end
 
   def show

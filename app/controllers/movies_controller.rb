@@ -3,7 +3,8 @@ class MoviesController < ApplicationController
   before_action :set_movie!, only: [:show, :edit, :update, :destroy]
 
   def index
-    @movies = Movie.all
+    unalpha = Movie.all 
+    @movies = unalpha.sort_by {|movie| movie.title}
   end
 
   def show
@@ -35,14 +36,16 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id]) #I don't think I need this with before_action 
     permits = params[:movie].permit(:title, :year, :rating, :director_id)
     permits[:director_id] = @movie.director_id
+    
     # using this instead of movie_params because director_id vs director.name
+    
     @movie.update(permits)
 
     if !@movie.valid?
       render :edit
     else
-      dir = Director.find_or_create_by(name: params[:movie][:director]) 
-      params[:movie][:director_id] = dir.id
+      director = Director.find_or_create_by(name: params[:movie][:director]) 
+      params[:movie][:director_id] = director.id
       parameter = params[:movie].permit(:title, :year, :rating, :director_id)
       @movie.update(parameter)
       redirect_to movie_path(@movie)
