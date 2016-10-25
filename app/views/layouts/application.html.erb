@@ -10,19 +10,27 @@
       margin-right: 82%;
     }
 
+
+    #errors {
+      border:1px;
+      border-style: inset;
+      margin-right: 75%;
+    }
+
     li {
       list-style-type: square;
       padding: 10px;
     }
-
-
     </style>
 
+<div id="navbar">    
     <%= link_to 'See All Movies', movies_path  %>
     <%= link_to 'See All Directors', directors_path  %>
     <%= link_to 'Add Movie', new_choice_path %>
+</div>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
