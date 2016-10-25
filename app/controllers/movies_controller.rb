@@ -14,41 +14,24 @@ class MoviesController < ApplicationController
   end
 
   def create
-      @moviesearch = Omdb.search(params[:movie][:title])#, params[:movie][:year], params[:movie][:rating])
+      @moviesearch = Omdb.search(params[:movie][:title])
+      # uses search API to give user selection options
       render 'choices/new'
-    # end
   end
-
-  # def choices
-  #   byebug
-  #   @movie = Omdb.newify(title)
-
-  #   # byebug 
-  #   # @moviesearch 
-  # end 
-
-  # def choices
-  #   erb :'/movies/choices'
-  # end 
-
 
   def edit
   
   end
 
   def update
-    # byebug
     @movie = Movie.find(params[:id])
     permits = params[:movie].permit(:title, :year, :rating, :director_id)
     permits[:director_id] = @movie.director_id
+    # using this instead of movie_params because director_id vs director.name
     @movie.update(permits)
-    
-    # @movie2 = Movie.new(movie_params)
-    # byebug
+
     if !@movie.valid?
-      # @movie = Movie.find(params[:id])
       render :edit
-      # byebug
     else
       dir = Director.find_or_create_by(name: params[:movie][:director]) 
       params[:movie][:director_id] = dir.id
@@ -59,7 +42,7 @@ class MoviesController < ApplicationController
   end 
 
   def destroy
-    @movies = Movie.all
+    @movies = Movie.all #do I need that or does it know from movies_url? 
     @movie.destroy
     redirect_to movies_url
   end

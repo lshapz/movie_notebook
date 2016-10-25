@@ -6,9 +6,7 @@ One weekend, I was hoping to practice my brand-new Rails skills. I figured I wou
 
 One of the first things I googled in this search was "IMDb API." Turns out they do not have an official one, but a kindly Internet fellow has created one, available at http://www.omdbapi.com/. 
 
-Seeing the options reminded me of some family history: namely, my father used to keep a paper notebook in which he logged every movie he saw and his rating of it. 
-
-This app is designed to function similarly. 
+Seeing the options reminded me of some family history: way back in the pre-PC 1980s, when my dad was a young movie nerd around NYC, he kept a physical notebook where he logged every film he saw and his rating thereof. This app is designed to function similarly. 
 
 When you go to add a movie, the search box leads to the OMDb Search API. It returns several relevant options (so if you search The Dark Knight, you'll see, among other choices, The Dark Knight 2008 & The Dark Knight Rises 2012). You can select one of those options (to add another one you'll have to make another query) and assign it your personal rating. 
 
@@ -34,6 +32,7 @@ To Do List (not in order of priority at all):
   b) if/when users, need tests for users (model and controller/features)
 
 Possible Fork / New App Idea:
+
 OMDB's API can handle TV Season/Episode requests. 
 With the many ways to view television these days (Hulu, Netflix, Amazon, actual TV), it's hard to keep track of the last episode you've seen of any given show. Perhaps a "Last Seen" app?
 http://www.omdbapi.com/?t=Game%20of%20Thrones&Season=1&Episode=1

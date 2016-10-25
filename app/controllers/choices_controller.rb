@@ -6,16 +6,13 @@ class ChoicesController < ApplicationController
 
   def create
     new_movie = Omdb.newify(params["imdbID"], params["rating"])
+    # takes user choice and actually gets movie info 
     @movie = Movie.new(new_movie)
+    # here is where we should be flashing validation at the user 
+    # but I think it breaks because of the two page creation process
     @movie.save 
     redirect_to movie_path(@movie)
   end 
-
-
-private
-
-
-
 
 end
 
