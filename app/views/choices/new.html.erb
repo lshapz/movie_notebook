@@ -1,7 +1,7 @@
-<%= form_tag choices_path do %>
+<%= form_tag movies_path do %>
   
-<% @moviesearch.each do |x| %>
-<p>  <%= x.title %> <%= x.year %> <%= radio_button_tag "imdbID", x.imdbID %></p>
+<% @moviesearch.each do |movie_choice| %>
+<p>  <%= movie_choice.title %> <%= movie_choice.year %> <%= radio_button_tag "imdbID", movie_choice.imdbID %></p>
 
 <% end %>
 <p> <%= label_tag 'rating' %>

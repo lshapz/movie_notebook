@@ -11,20 +11,28 @@ class MoviesController < ApplicationController
 
   def new
     @movie = Movie.new
+    @choice = Choice.new
   end
 
   def create
-      @moviesearch = Omdb.search(params[:movie][:title])
-      # uses search API to give user selection options
-      render 'choices/new'
+    new_movie = Omdb.newify(params["imdbID"], params["rating"])
+    # takes user choice and actually gets movie info 
+    @movie = Movie.new(new_movie)
+    if @movie.save 
+     redirect_to movie_path(@movie)
+    else
+      @choice = Choice.new
+      render :new
+    end       # uses search API to give user selection options
   end
 
-  def edit
   
+
+  def edit
   end
 
   def update
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find(params[:id]) #I don't think I need this with before_action 
     permits = params[:movie].permit(:title, :year, :rating, :director_id)
     permits[:director_id] = @movie.director_id
     # using this instead of movie_params because director_id vs director.name
