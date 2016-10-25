@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
   end
 
   def new
-    @choice = Choice.new
+    @movie = Movie.new
   end
 
   def create
@@ -20,11 +20,9 @@ class MoviesController < ApplicationController
     if @movie.save 
      redirect_to movie_path(@movie)
     else
-
       @choice = Choice.find_or_create_by(title: params["title"], year: params["year"], imdbID: params["imdbID"])
       @moviesearch = [@choice]
-      render 'choices/new'
-
+      render 'movies/new'
     end       
   end
 

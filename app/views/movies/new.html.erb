@@ -6,11 +6,16 @@
 <% end %>
 </div>
 
-<h1> Find A Movie By Searching IMDb! </h1>
 
-<%= form_for @choice do |f| -%>
-  <p><%= f.label :Title, "Title" %><%= f.text_field :title %></p>
-  <p><%= f.submit "Search", :disable_with => 'Searching...' %></p>
+<%= form_tag movies_path do %>
+  
+<% @moviesearch.each do |movie_choice| %>
+  <%= hidden_field_tag "title", movie_choice.title%>
+    <%= hidden_field_tag "year", movie_choice.year%>
+
+<p>  <%= movie_choice.title %> <%= movie_choice.year %> <%= radio_button_tag "imdbID", movie_choice.imdbID %></p>
 <% end %>
-
-<small>you will be given a list of options before you add to your notebook, since we know how common some titles are!</small>
+<p> <%= label_tag 'rating' %>
+<%= text_field_tag 'rating' %></p>
+<p><%= submit_tag("Choose") %></p>
+<% end %>

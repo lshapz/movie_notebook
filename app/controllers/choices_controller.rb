@@ -2,14 +2,13 @@ require 'byebug'
 class ChoicesController < ApplicationController
   def new
     # @moviesearch = Omdb.search(params[:movie][:title]) ? 
-
+    @choice = Choice.new
   end
 
   def create
     #byebug
-    @movie = Movie.new
     @moviesearch = Omdb.search(params[:choice][:title])
-    render :new
+    render '/movies/new'
   end 
 
 end
