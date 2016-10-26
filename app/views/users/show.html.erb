@@ -1,12 +1,12 @@
 <h1>Hi, <%= @user.name %>.</h1>
 
 <h3>My Movies</h3>
-<% if @seen == nil %>
+  <% if @seen == nil %>
   You should add or rate some movies!
-  <% elsif @seen == true %>
-  <% @seen.each do |thing| %>
-  <li> <%= link_to thing.movie.title, movie_path(thing.movie) %> </li><ul> 
-  <li>My Rating: <%= thing.rating %></li>
+  <% else %>
+  <ul><% @seen.each do |thing| %>
+  <li> <%= link_to thing.movie.title, movie_path(thing.movie) %> </li>
+  <ul><li>My Rating: <%= thing.rating %></li>
   <li>Year Seen: <%= thing.year_seen %></li>  
         <% if thing.big_screen %>
         <li>Seen in theaters</li>    

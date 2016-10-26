@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
 
   def show 
     @opinion = UserMovie.find_by(movie_id: @movie.id, user_id: session[:user_id])
-
+    # byebug
   end
 
   def new
@@ -19,14 +19,17 @@ class MoviesController < ApplicationController
 
   def create
     # byebug 
-    byebug 
-    new_movie = Omdb.newify(params["imdbID"])
-
-    # takes user choice and actually gets movie info 
-    @movie = Movie.new(new_movie)
+    # byebug 
+    thing = Movie.find_by(imdbID: params["imdbID"])
+    if !thing
+      new_movie = Omdb.newify(params["imdbID"])
+      @movie = Movie.create(new_movie)
+      # @movie.save
+    else 
+      @movie = thing 
     # if @movie.valid?  
       # user stuff 
-    @movie.save
+    end
       if session[:user_id] != nil
         @movie.save
         @user = User.find(session[:user_id])
@@ -72,12 +75,10 @@ class MoviesController < ApplicationController
     permits[:director_id] = @movie.director_id
     
     # using this instead of movie_params because director_id vs director.name
-    
     @movie.update(permits)
-
     if !@movie.valid?
       render :edit
-    else
+     else
       director = Director.find_or_create_by(name: params[:movie][:director]) 
       params[:movie][:director_id] = director.id
       parameter = params[:movie].permit(:title, :year, :rating, :director_id)

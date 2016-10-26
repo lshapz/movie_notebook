@@ -9,7 +9,10 @@
 <% elsif @opinion %>
 <p>My Rating: <%= @opinion.rating %></p> 
 <p>First Seen: <%= @opinion.year_seen %></p> 
-<p>Seen in theaters? <%= @opinion.big_screen %></p>
+<p>Seen in theaters? <% if @opinion.big_screen.nil? %>Nope
+<% else %>Yep
+  <% end %>
+</p>
 <% else %>
 No Opinion - Yet
 <% end %>

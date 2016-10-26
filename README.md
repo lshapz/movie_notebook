@@ -25,7 +25,6 @@ DONE !2) Currently set up to handle only one user (your personal rating is an at
 
   a) need tests for users and usermovies (model and controller/features)
 
-5) need to deal with movie uniqueness 
 
 Possible Fork / New App Idea:
 

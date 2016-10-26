@@ -29,7 +29,7 @@ class Omdb
       @director = Director.find_or_create_by(name: directors)
     end
   
-    movie_params = {title: json['Title'], year: json['Year'], director_id: @director.id, link: @linkable}
+    movie_params = {title: json['Title'], year: json['Year'], director_id: @director.id, link: @linkable, imdbID: json['imdbID']}
     # we don't create the movie in here because we want the validations to show up for the user
   end 
 

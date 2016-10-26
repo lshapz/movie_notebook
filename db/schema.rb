@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20161026134940) do
     t.integer  "director_id"
     t.integer  "year"
     t.string   "link"
+    t.string   "imdbID"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
