@@ -3,12 +3,12 @@ module MovieHelper
 
 def new_movie
     @director = Director.find_or_create_by!(name: "Alan Smithee")
-    @movie = Movie.create!(title: "Movie", director_id: @director.id, year: 1956, link: "http://imdb.com/title/tt0033467")
+    @movie = Movie.find_or_create_by!(title: "Movie", director_id: @director.id, year: 1956, link: "http://imdb.com/title/tt0033467", imdbID: "tt0033467")
 end
 
 def movie_two
   @director = Director.find_or_create_by!(name: "Alan Smithee")
-  @movie2 = Movie.create!(title: "Movie 2", director_id: @director.id, year: 1957, link: "http://imdb.com/title/tt0333467")
+  @movie2 = Movie.find_or_create_by!(title: "Movie 2", director_id: @director.id, year: 1957, link: "http://imdb.com/title/tt0333467", imdbID: "tt0333467")
 end
 
 def citizen_kane

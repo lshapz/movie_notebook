@@ -47,6 +47,9 @@ end
       it 'creates a new movie from those choices' do 
         visit new_choice_path
 #        rate_kane(5)
+        citizen_kane
+        choose ('imdbID_tt0033467')
+        click_button('Choose')
         expect(page).to have_css("h1", text: "Citizen Kane")
       end 
 
