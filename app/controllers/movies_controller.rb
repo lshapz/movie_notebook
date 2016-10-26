@@ -24,9 +24,19 @@ class MoviesController < ApplicationController
     @movie = Movie.new(new_movie)
     if @movie.save 
       # user stuff 
-      @user = User.find(session[:user_id])
-      @opinion = UserMovie.create(user_id: @user.id, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
-      redirect_to movie_path(@movie)
+      if session[:user_id] != nil
+        @user = User.find(session[:user_id])
+        @opinion = UserMovie.new(user_id: @user.id, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
+        if @opinion.save
+          redirect_to movie_path(@movie)
+        else
+          @choice = Choice.find_or_create_by(title: params["title"], year: params["year"], imdbID: params["imdbID"])
+          @moviesearch = [@choice]
+          render 'movies/new'
+        end 
+      else
+        redirect_to movie_path(@movie)
+      end
     else
       @choice = Choice.find_or_create_by(title: params["title"], year: params["year"], imdbID: params["imdbID"])
       @moviesearch = [@choice]
@@ -37,8 +47,14 @@ class MoviesController < ApplicationController
   
 
   def edit
-    @opinion = UserMovie.find_or_create_by(movie_id: @movie.id, user_id: session[:user_id])
-
+    # byebug
+    check_me = UserMovie.find_by(movie_id: @movie.id, user_id: session[:user_id])
+    if !check_me
+      @opinion = UserMovie.new(movie_id: @movie.id, user_id: current_user)
+    else
+      @opinion = check_me
+    end 
+     # byebug
   end
 
   def update

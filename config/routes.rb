@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :sessions
+  post '/logout' => 'sessions#destroy'
+  post '/login' => 'sessions#create'
+
+  resources :sessions, except: ['destroy', 'create']
   resources :users
   resources :choices 
   resources :directors

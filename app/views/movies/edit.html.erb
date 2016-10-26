@@ -13,7 +13,8 @@
 <p><%= f.label :director, "Director" %><%= f.text_field :director, value: @movie.director.name %></p>
 <p><%= f.submit "Update Movie", :name => 'Update Movie' %></p>
 <% end %>
-
+<% if session[:user_id] != nil %>
+  
 <h1>Edit Your Opinion</h1>
 <%= form_tag user_movie_path, method: "patch" do %>
 <p><%= label_tag 'rating', 'Your Rating' %><%= text_field_tag 'rating',  @opinion.rating %></p>
@@ -21,4 +22,5 @@
 <p><%= label_tag 'big_screen', 'Did you see it in theaters?' %><%= check_box_tag 'big_screen', 1 , @opinion.big_screen ? true : false  %></p>
 <%= hidden_field_tag 'movie', @movie.id %>
 <p><%= submit_tag("Update Opinion") %></p>
+<% end %>
 <% end %>

@@ -5,8 +5,9 @@ def edit
 end
 
 def update
-  @user_movie = UserMovie.find_or_create_by(movie_id: params[:movie], user_id: session[:user_id])
+  @user_movie = UserMovie.find_or_create_by(movie_id: params[:movie], user_id: current_user)
   @user_movie.update(rating: params[:rating], big_screen: params[:big_screen], year_seen: params[:year_seen])
+  byebug
   redirect_to '/movies'
 end
 

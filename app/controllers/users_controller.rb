@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(session[:user_id])
+    @user = User.find(current_user)
     @seen = []
     @seen << UserMovie.find_by(user_id: @user.id)
   end
