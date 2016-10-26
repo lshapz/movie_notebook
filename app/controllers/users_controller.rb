@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    before_action :require_logged_in
-    skip_before_action :require_logged_in, only: [:new, :create]
+  before_action :require_logged_in
+  skip_before_action :require_logged_in, only: [:new, :create]
 
   def index
     redirect_to movies_path

@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
     redirect_to movies_path
   end 
 
-def current_user
- session[:user_id]
-end
+  def current_user
+    session[:user_id]
+  end
 
 private
   def require_logged_in

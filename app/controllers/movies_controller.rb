@@ -30,7 +30,7 @@ class MoviesController < ApplicationController
     # if @movie.valid?  
       # user stuff 
     end
-      if session[:user_id] != nil
+      if !session[:user_id].nil?
         @movie.save
         @user = User.find(session[:user_id])
         @opinion = UserMovie.new(user_id: @user.id, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
@@ -70,7 +70,7 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie = Movie.find(params[:id]) #I don't think I need this with before_action 
+    @movie = Movie.find(params[:id]) # I don't think I need this with before_action 
     permits = params[:movie].permit(:title, :year, :rating, :director_id)
     permits[:director_id] = @movie.director_id
     
@@ -88,7 +88,7 @@ class MoviesController < ApplicationController
   end 
 
   def destroy
-    @movies = Movie.all #do I need that or does it know from movies_url? 
+    @movies = Movie.all # do I need that or does it know from movies_url? 
     UserMovie.where(movie_id: @movie.id).destroy_all    
     @movie.delete
     redirect_to movies_url

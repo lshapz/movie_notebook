@@ -3,7 +3,7 @@ class UserMoviesController < ApplicationController
 
 def edit
   @movie = Movie.find(params[:id])
-    check_me = UserMovie.find_by(movie_id: @movie.id, user_id: session[:user_id])
+  check_me = UserMovie.find_by(movie_id: @movie.id, user_id: session[:user_id])
     if !check_me
       @opinion = UserMovie.new(movie_id: @movie.id, user_id: current_user)
     else
@@ -21,7 +21,7 @@ def update
   if @user_movie.update(rating: params[:rating], big_screen: params[:big_screen], year_seen: params[:year_seen])
     redirect_to movie_path(@user_movie.movie)
   else
-    #byebug
+    # byebug
     @opinion = @user_movie 
     @movie = Movie.find(params[:movie])
     render :edit

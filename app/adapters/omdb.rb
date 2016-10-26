@@ -18,7 +18,7 @@ class Omdb
     directors = json['Director']
       # byebug
     if directors.include?(', ')
-      #this if statement handles multiple director movies, easier than many-to-many but not ideal
+      # this if statement handles multiple director movies, easier than many-to-many but not ideal
       director_array = directors.split(', ')
       first_director = director_array.shift
       @director = Director.find_or_create_by(name: first_director)
