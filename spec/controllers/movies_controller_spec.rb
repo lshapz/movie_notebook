@@ -16,8 +16,8 @@ describe 'Route to view' do
         new_movie
         movie_two
         visit movies_path
-        expect(page).to have_link(@movie.title, href=@movie)
-        expect(page).to have_link(@movie2.title, href=@movie2)
+        expect(page).to have_link(@movie.title, href: movie_path(@movie))
+        expect(page).to have_link(@movie2.title, href: movie_path(@movie2))
       end
 end
 
