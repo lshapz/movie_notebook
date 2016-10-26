@@ -3,6 +3,7 @@ class MoviesController < ApplicationController
   before_action :set_movie!, only: [:show, :edit, :update, :destroy]
 
   def index
+    # byebug
     unalpha = Movie.all 
     @movies = unalpha.sort_by {|movie| movie.title}
   end

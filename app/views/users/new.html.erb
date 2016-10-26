@@ -1,0 +1,7 @@
+<%= form_for @user do |f| -%>
+  <p><%= f.text_field :name %>
+    <%= f.label :name, "Your Name" %></p>
+   <p> <%= f.password_field :password %>
+       <%= f.label :password, "Password" %></p>
+    <p><%= f.submit "Create User", name: "Create", :disable_with => 'Creating User...' %></p>
+<% end %>
