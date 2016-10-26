@@ -5,8 +5,6 @@ class CreateMovies < ActiveRecord::Migration[5.0]
       t.integer :director_id
       t.integer :year
       t.string :link
-      t.float :rating
-
       t.timestamps
     end
   end

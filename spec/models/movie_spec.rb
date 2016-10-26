@@ -15,7 +15,7 @@ RSpec.describe Movie, :type => :model do
   end 
 
   it "is not valid with a bad year" do 
-    @movie3 = Movie.create(title: "Movie", director_id: @director.id, year: 100, link: "http://imdb.com/title/tt0033467", rating: 4.75)
+    @movie3 = Movie.create(title: "Movie", director_id: @director.id, year: 100, link: "http://imdb.com/title/tt0033467")
     expect(@movie3).not_to be_valid
   end
 end

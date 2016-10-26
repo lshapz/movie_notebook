@@ -15,10 +15,11 @@ class MoviesController < ApplicationController
   end
 
   def create
-    new_movie = Omdb.newify(params["imdbID"], params["rating"])
+    new_movie = Omdb.newify(params["imdbID"])
     # takes user choice and actually gets movie info 
     @movie = Movie.new(new_movie)
     if @movie.save 
+      # user stuff 
      redirect_to movie_path(@movie)
     else
       @choice = Choice.find_or_create_by(title: params["title"], year: params["year"], imdbID: params["imdbID"])

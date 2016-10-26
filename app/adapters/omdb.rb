@@ -11,8 +11,7 @@ class Omdb
  
   end
 
-  def self.newify(imdbID, rating)
-    @rating = rating #user input
+  def self.newify(imdbID)
     movie_creator = RestClient.get('http://www.omdbapi.com/?', params: {i: imdbID, r: 'json'})    
     json = JSON.parse(movie_creator)
     @linkable = "http://imdb.com/title/" + json['imdbID']
@@ -30,7 +29,7 @@ class Omdb
       @director = Director.find_or_create_by(name: directors)
     end
   
-    movie_params = {title: json['Title'], year: json['Year'], director_id: @director.id, link: @linkable, rating: @rating}
+    movie_params = {title: json['Title'], year: json['Year'], director_id: @director.id, link: @linkable}
     # we don't create the movie in here because we want the validations to show up for the user
   end 
 
