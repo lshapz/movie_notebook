@@ -18,44 +18,25 @@ class MoviesController < ApplicationController
   end
 
   def create
-    # byebug 
-    # byebug 
-    thing = Movie.find_by(imdbID: params["imdbID"])
-    if !thing
+    temp_movie = Movie.find_by(imdbID: params["imdbID"])
+    if !temp_movie
       new_movie = Omdb.newify(params["imdbID"])
       @movie = Movie.create(new_movie)
-      # @movie.save
     else 
-      @movie = thing 
-    # if @movie.valid?  
-      # user stuff 
+      @movie = temp_movie 
     end
-      if !session[:user_id].nil?
-        @movie.save
-        @user = User.find(session[:user_id])
-        @opinion = UserMovie.new(user_id: @user.id, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
+      if !session[:user_id].nil?        # @movie.save
+        @opinion = UserMovie.new(user_id: current_user, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
         if @opinion.save
-
           redirect_to movie_path(@movie)
         else
-          # byebug
-          # new_movie = Omdb.newify(params["imdbID"])
-          @choice = Choice.find_by(imdbID: params["imdbID"])
-          @moviesearch = [@choice]
-          # byebug
+          @moviesearch = [Choice.find_by(imdbID: params["imdbID"])]
           render 'movies/new'
         end 
       else
-
         redirect_to movie_path(@movie)
       end
-    # else
-    #   @choice = Choice.find_or_create_by(title: params["title"], year: params["year"], imdbID: params["imdbID"])
-    #   @moviesearch = [@choice]
-    #   render 'movies/new'
-    # end       
   end
-
   
 
   def edit
@@ -70,13 +51,11 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie = Movie.find(params[:id]) # I don't think I need this with before_action 
-    permits = params[:movie].permit(:title, :year, :rating, :director_id)
+    permits = params[:movie].permit(:title, :year, :director_id)
     permits[:director_id] = @movie.director_id
-    
-    # using this instead of movie_params because director_id vs director.name
     @movie.update(permits)
     if !@movie.valid?
+      self.edit
       render :edit
      else
       director = Director.find_or_create_by(name: params[:movie][:director]) 
