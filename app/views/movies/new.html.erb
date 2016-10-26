@@ -13,7 +13,7 @@
   <%= movie_choice.title %> <%= movie_choice.year %> <%= radio_button_tag "imdbID", movie_choice.imdbID %></p>
 <% end %>
 <p><%= label_tag 'rating', 'Your Rating' %><%= text_field_tag 'rating' %></p>
-<p><%= label_tag 'year_seen', 'Year You First Saw Film' %><%= text_field_tag 'year_seen' %></p>
+<p><%= label_tag 'year_seen', 'Year Seen' %><%= text_field_tag 'year_seen' %></p>
 <p><%= label_tag 'big_screen', 'Did you see it on the big screen?' %><%= check_box_tag 'big_screen' %></p>
 <p><%= submit_tag("Choose") %></p>
 <% end %>

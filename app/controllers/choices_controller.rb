@@ -8,7 +8,7 @@ class ChoicesController < ApplicationController
   def create
     #byebug
     @moviesearch = Omdb.search(params[:choice][:title])
-    byebug
+    # byebug
     render '/movies/new'
     # byebug
   end 

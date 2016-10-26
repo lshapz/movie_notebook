@@ -8,7 +8,9 @@ class MoviesController < ApplicationController
     @movies = unalpha.sort_by {|movie| movie.title}
   end
 
-  def show
+  def show 
+    @opinion = UserMovie.find_by(movie_id: @movie.id, user_id: session[:user_id])
+
   end
 
   def new
@@ -16,12 +18,15 @@ class MoviesController < ApplicationController
   end
 
   def create
+    # byebug 
     new_movie = Omdb.newify(params["imdbID"])
     # takes user choice and actually gets movie info 
     @movie = Movie.new(new_movie)
     if @movie.save 
       # user stuff 
-     redirect_to movie_path(@movie)
+      @user = User.find(session[:user_id])
+      @opinion = UserMovie.create(user_id: @user.id, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
+      redirect_to movie_path(@movie)
     else
       @choice = Choice.find_or_create_by(title: params["title"], year: params["year"], imdbID: params["imdbID"])
       @moviesearch = [@choice]
@@ -32,6 +37,8 @@ class MoviesController < ApplicationController
   
 
   def edit
+    @opinion = UserMovie.find_or_create_by(movie_id: @movie.id, user_id: session[:user_id])
+
   end
 
   def update
@@ -64,7 +71,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params[:movie].permit(:title, :director_id, :year, :link, :rating, :director)
+    params[:movie].permit(:title, :director_id, :year, :link, :director)
   end
 
   def set_movie!

@@ -4,6 +4,13 @@
 <% if @movie.link %>
 <p><a href="<%= @movie.link %>">View On IMDb</a></p>
 <% end %>
+<% if @opinion %>
+<p>My Rating: <%= @opinion.rating %></p> 
+<p>First Seen: <%= @opinion.year_seen %></p> 
+<p>Saw it on the big screen? <%= @opinion.big_screen %></p>
+<% else %>
+No Opinion - Yet
+<% end %>
 
 <%= link_to 'Edit Me', edit_movie_path(@movie) %>
 <%= link_to 'Delete', @movie, method: :delete%>
