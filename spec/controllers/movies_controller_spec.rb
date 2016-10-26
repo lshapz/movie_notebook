@@ -55,7 +55,6 @@ end
         rate_kane(50)
         expect(page).to have_text('Rating must be less than or equal to 5')
       end 
-
   end
 
   describe 'Edit Page' do 
