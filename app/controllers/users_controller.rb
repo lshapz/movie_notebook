@@ -8,8 +8,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user)
-    show = UserMovie.where(user_id: @user.id)
-    @seen = show.each_with_object([]) do |movie, seen|
+    history = UserMovie.where(user_id: @user.id)
+    @seen = history.each_with_object([]) do |movie, seen|
         seen << movie
     end
   end
