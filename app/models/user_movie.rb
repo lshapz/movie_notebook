@@ -1,4 +1,6 @@
 class UserMovie < ApplicationRecord
+    belongs_to :movie
+    belongs_to :users
     validates :user_id, presence: true
     validates :movie_id, presence: true
     validates :rating, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }

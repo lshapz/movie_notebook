@@ -63,7 +63,8 @@ class MoviesController < ApplicationController
 
   def destroy
     @movies = Movie.all #do I need that or does it know from movies_url? 
-    @movie.destroy
+    UserMovie.where(movie_id: @movie.id).destroy_all    
+    @movie.delete
     redirect_to movies_url
   end
 
