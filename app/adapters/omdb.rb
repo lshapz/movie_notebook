@@ -7,7 +7,7 @@ class Omdb
     @coll = @thing["Search"].each_with_object([]) do |result, coll|
       coll << Choice.find_or_create_by(title: result["Title"], year: result["Year"], imdbID: result["imdbID"])
     end 
-    # return value is an array of non-saved Choice instances  
+      # byebug
  
   end
 

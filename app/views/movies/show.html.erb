@@ -4,7 +4,9 @@
 <% if @movie.link %>
 <p><a href="<%= @movie.link %>">View On IMDb</a></p>
 <% end %>
-<% if @opinion %>
+<% if session[:user_id].nil? %>
+
+<% elsif @opinion %>
 <p>My Rating: <%= @opinion.rating %></p> 
 <p>First Seen: <%= @opinion.year_seen %></p> 
 <p>Seen in theaters? <%= @opinion.big_screen %></p>

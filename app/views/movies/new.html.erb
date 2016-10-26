@@ -1,9 +1,5 @@
-<% if @movie && @movie.errors.any? %>
+<% if @opinion && @opinion.errors.any? %>
 <div id="errors"><ul>
-<% @movie.errors.full_messages.each do |msg|  %>
-<li><%= msg %></li>
-<% end %></ul>
-<% elsif @opinion && @opinion.errors.any? %>
 <% @opinion.errors.full_messages.each do |msg|  %>
 <li><%= msg %></li>
 <% end %></ul>
@@ -11,11 +7,10 @@
 <% end %>
 
 <%= form_tag movies_path do %>
+<%= label_tag "choices" %> 
 <% @moviesearch.each do |movie_choice| %>
-  <%= hidden_field_tag "title", movie_choice.title%>
-  <%= hidden_field_tag "year", movie_choice.year%>
-<p> 
-  <%= movie_choice.title %> <%= movie_choice.year %> <%= radio_button_tag "imdbID", movie_choice.imdbID %></p>
+<p> <%= movie_choice.title %> <%= movie_choice.year %>
+<%= radio_button_tag "imdbID", movie_choice.imdbID, checked = false %> </p> 
 <% end %>
 <% if session[:user_id] != nil %>
   

@@ -19,29 +19,38 @@ class MoviesController < ApplicationController
 
   def create
     # byebug 
+    byebug 
     new_movie = Omdb.newify(params["imdbID"])
+
     # takes user choice and actually gets movie info 
     @movie = Movie.new(new_movie)
-    if @movie.save 
+    # if @movie.valid?  
       # user stuff 
+    @movie.save
       if session[:user_id] != nil
+        @movie.save
         @user = User.find(session[:user_id])
         @opinion = UserMovie.new(user_id: @user.id, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
         if @opinion.save
+
           redirect_to movie_path(@movie)
         else
-          @choice = Choice.find_or_create_by(title: params["title"], year: params["year"], imdbID: params["imdbID"])
+          # byebug
+          # new_movie = Omdb.newify(params["imdbID"])
+          @choice = Choice.find_by(imdbID: params["imdbID"])
           @moviesearch = [@choice]
+          # byebug
           render 'movies/new'
         end 
       else
+
         redirect_to movie_path(@movie)
       end
-    else
-      @choice = Choice.find_or_create_by(title: params["title"], year: params["year"], imdbID: params["imdbID"])
-      @moviesearch = [@choice]
-      render 'movies/new'
-    end       
+    # else
+    #   @choice = Choice.find_or_create_by(title: params["title"], year: params["year"], imdbID: params["imdbID"])
+    #   @moviesearch = [@choice]
+    #   render 'movies/new'
+    # end       
   end
 
   

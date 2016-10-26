@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   post '/logout' => 'sessions#destroy'
   post '/login' => 'sessions#create'
-
+  get '/' => 'application#index'
   resources :sessions, except: ['destroy', 'create']
   resources :users
   resources :choices 
