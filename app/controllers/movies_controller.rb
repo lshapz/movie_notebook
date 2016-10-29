@@ -25,13 +25,14 @@ class MoviesController < ApplicationController
 
   def create
     temp_movie = Movie.find_by(imdbID: params["imdbID"])
-    if !temp_movie
+    if !temp_movie 
       new_movie = Omdb.newify(params["imdbID"])
       @movie = Movie.create(new_movie)
     else 
       @movie = temp_movie 
     end
-      if !session[:user_id].nil?        # @movie.save
+    # byebug
+      if !params[:rating].empty? && !params[:year_seen].empty? && !session[:user_id].nil?   # @movie.save
         @opinion = UserMovie.new(user_id: current_user, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
         if @opinion.save
           redirect_to movie_path(@movie)

@@ -12,4 +12,8 @@ def movie_year
   end
 end 
 
+def movie
+  @movie = Movie.find(self.movie_id)
+end
+
 end
