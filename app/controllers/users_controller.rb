@@ -12,6 +12,12 @@ class UsersController < ApplicationController
     @seen = history.each_with_object([]) do |movie, seen|
         seen << movie
     end
+    sql_feelings = UserMovie.find_by_sql("select rating, count(*) as count from user_movies where user_id = #{@user.id} group by rating")
+    @feelings =    sql_feelings.map do |feeling|
+      [feeling.rating, feeling.count]
+    end
+    # @feelings.to_h
+
   end
 
   def new

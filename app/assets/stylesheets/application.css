@@ -5,6 +5,18 @@
   padding-top: 75px;
 }
 
+#title {
+  padding-left: 41.5%;
+  padding-right: 40%;
+  font-size: large;
+}
+
+#title2 {
+  padding-left: 43%;
+  padding-right: 40%;
+  font-size: large;
+}
+
 
 .container-fluid
 {

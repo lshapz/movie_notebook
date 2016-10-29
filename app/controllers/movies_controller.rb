@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
     @feelings =    sql_feelings.map do |feeling|
       ["user rating: #{feeling.rating}", feeling.count]
     end
+    @feelings.to_h
 
   end
 
