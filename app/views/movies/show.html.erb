@@ -17,5 +17,12 @@
 No Opinion - Yet
 <% end %>
 
-<%= link_to 'Edit Me', edit_movie_path(@movie) %>
-<%= link_to 'Delete', @movie, method: :delete%>
+<%= column_chart(@feelings) %>
+
+<div id="container">
+<div id="footer">
+<p><%= button_to 'Edit Movie', edit_movie_path(@movie),:method => "get"  %></p>
+
+<p><%= button_to 'Delete Movie', @movie, method: :delete, data: { confirm: 'Are you sure?' }%></p>
+</div>
+</div>

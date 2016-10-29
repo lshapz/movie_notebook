@@ -11,6 +11,11 @@ class MoviesController < ApplicationController
   def show 
     @opinion = UserMovie.find_by(movie_id: @movie.id, user_id: session[:user_id])
     # byebug
+    sql_feelings = UserMovie.find_by_sql("select rating, count(*) as count from user_movies where movie_id = #{@movie.id} group by rating")
+    @feelings =    sql_feelings.map do |feeling|
+      ["user rating: #{feeling.rating}", feeling.count]
+    end
+
   end
 
   def new
