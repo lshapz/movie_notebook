@@ -1,53 +1,40 @@
 <!DOCTYPE html>
 <html>
   <head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/public/css/bootstrap.min.css" rel="stylesheet">
+
     <title>Notebook</title>
-    <%= csrf_meta_tags %>
-    <style>
-    
-    input[type=text] {
-      background-color: #ccffff ;
-      float: right;
-      margin-right: 82%;
-    }
+        <%= csrf_meta_tags %>
 
-    input[type=password] {
-      background-color: #ccffff ;
-      float: right;
-      margin-right: 82%;
-    }
-
-
-    #errors {
-      border:1px;
-      border-style: inset;
-      margin-right: 75%;
-    }
-
-    li {
-      list-style-type: square;
-      padding: 10px;
-    }
-
-    </style>
-
-<div id="navbar">    
-    <%= link_to 'See All Movies', movies_path  %>
-    <%= link_to 'See All Directors', directors_path  %>
-    <%= link_to 'Add Movie', new_choice_path %>
-    <% if session[:user_id] %>
-      <% @user = User.find(session[:user_id]) %>
-      <%= link_to 'My Profile', user_path(@user)  %>
-    <% else %>
-      <%= link_to 'Log In', new_session_path  %>
-    <% end %>
-</div>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
   </head>
 
-  <body>
+  <body>    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li> <%= link_to 'See All Movies', movies_path  %></li>
+            <li><%= link_to 'See All Directors', directors_path  %></li>
+            <li><%= link_to 'Add Movie', new_choice_path %></li>
+            <li>  <% if session[:user_id] %>
+        <% @user = User.find(session[:user_id]) %>
+        <%= link_to 'My Profile', user_path(@user)  %>
+      <% else %>
+        <%= link_to 'Log In', new_session_path  %>
+      <% end %></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
     <%= yield %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
   </body>
 </html>
