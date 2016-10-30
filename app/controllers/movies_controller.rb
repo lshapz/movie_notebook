@@ -31,18 +31,18 @@ class MoviesController < ApplicationController
     else 
       @movie = temp_movie 
     end
-    # byebug
-      if !params[:rating].empty? && !params[:year_seen].empty? && !session[:user_id].nil?   # @movie.save
-        @opinion = UserMovie.new(user_id: current_user, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
-        if @opinion.save
-          redirect_to movie_path(@movie)
-        else
-          @moviesearch = [Choice.find_by(imdbID: params["imdbID"])]
-          render 'movies/new'
-        end 
-      else
+    #byebug
+    if !params[:rating].empty? && !params[:year_seen].empty? && !session[:user_id].nil?
+      @opinion = UserMovie.new(user_id: current_user, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
+      if @opinion.save
         redirect_to movie_path(@movie)
-      end
+      else
+        @moviesearch = [Choice.find_by(imdbID: params["imdbID"])]
+        render 'movies/new'
+      end 
+    else
+      redirect_to movie_path(@movie)
+    end
   end
   
 

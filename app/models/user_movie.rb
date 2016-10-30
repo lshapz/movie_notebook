@@ -6,14 +6,14 @@ class UserMovie < ApplicationRecord
     validates :rating, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }
     validate :movie_year
 
-def movie_year
-  unless self.year_seen >= self.movie.year 
-    self.errors.add(:year_seen, 'must be later than movie release year')
-  end
-end 
+    def movie_year
+      unless self.year_seen >= self.movie.year 
+        self.errors.add(:year_seen, 'must be later than movie release year')
+      end
+    end 
 
-def movie
-  @movie = Movie.find(self.movie_id)
-end
+    def movie
+      @movie = Movie.find(self.movie_id)
+    end
 
 end
