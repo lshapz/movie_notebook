@@ -8,8 +8,10 @@
 
     <title>Notebook</title>
         <%= csrf_meta_tags %>
-<script src="https://www.google.com/jsapi"></script>
-<script src="chartkick.js"></script>
+
+<%= javascript_include_tag "application" %>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -33,6 +35,11 @@
         </nav>
       </div>
     </header>
+
+    <% if flash[:notice] %>
+      <p> <div class="notice"><%= flash[:notice] %></div></p>
+      <br></br>
+    <% end %>
   
     <%= yield %>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -2,6 +2,7 @@ require 'byebug'
 class MoviesController < ApplicationController
   before_action :set_movie!, only: [:show, :edit, :update, :destroy]
   before_action :require_logged_in
+  skip_before_action :require_logged_in, only: [:show, :index]
 
   def index
     # byebug
@@ -12,12 +13,11 @@ class MoviesController < ApplicationController
   def show 
     @opinion = UserMovie.find_by(movie_id: @movie.id, user_id: session[:user_id])
     # byebug
-    sql_feelings = UserMovie.find_by_sql("select rating, count(*) as count from user_movies where movie_id = #{@movie.id} group by rating")
-    @feelings =    sql_feelings.map do |feeling|
+    sql_feelings = UserMovie.find_by_sql("select rating, count(*) as count from user_movies where movie_id = #{@movie.id} group by rating order by rating")
+    @feelings = sql_feelings.map do |feeling|
       ["user rating: #{feeling.rating}", feeling.count]
     end
     @feelings.to_h
-
   end
 
   def new

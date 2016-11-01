@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
 private
   def require_logged_in
+    flash[:notice] = "you gotta log in to do that!"
     redirect_to controller: 'sessions', action: 'new' unless current_user
   end     
 
