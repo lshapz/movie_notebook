@@ -1,5 +1,6 @@
 require 'byebug'
 class UserMoviesController < ApplicationController
+  before_action :require_logged_in
 
 def edit
   @movie = Movie.find(params[:id])

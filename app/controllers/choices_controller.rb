@@ -1,5 +1,7 @@
 require 'byebug'
 class ChoicesController < ApplicationController
+    before_action :require_logged_in
+
   def new
     # @moviesearch = Omdb.search(params[:movie][:title]) ? 
     @choice = Choice.new

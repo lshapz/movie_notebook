@@ -1,6 +1,7 @@
 require 'byebug'
 class MoviesController < ApplicationController
   before_action :set_movie!, only: [:show, :edit, :update, :destroy]
+  before_action :require_logged_in
 
   def index
     # byebug

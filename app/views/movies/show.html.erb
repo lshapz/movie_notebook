@@ -26,8 +26,5 @@ No Opinion - Yet
 <p><%= button_to 'Edit Movie', edit_movie_path(@movie),:method => "get"  %></p>
 
 <p><%= button_to 'Delete Movie', @movie, method: :delete, data: { confirm: 'Are you sure?' }%></p>
-<%= button_to "Delete This Card (all of them!)", {:controller => :cards,
-      :action => 'destroy', :id => @card.id, confirm: 'Are you sure?' }, :method => :delete %>
-
 </div>
 </div>
