@@ -21,9 +21,13 @@ To Do List (not in order of priority at all):
   2) IMDb poster API is cool, but I don't want to add it till much later, to keep page-load time low during testing.
   2a) on the other hand I just added chartkick javascript so maybe get I'll started on that soon
 
-  3) Basic rspec/capybara tests have been implemented for Movie and Director. They do not pass anymore. IDK why. 
-
-    a) need tests for users and usermovies (model and controller/features)
+  3) Basic rspec/capybara tests have been implemented for Movie and Director. More tests are needed: 
+    a) user model 
+    b) users controller
+    c) choice model
+    d) choices controller 
+    e) user_movie model
+    f) user_movie controller
 
   4) I am using a weird hack for the edit/update of a movie, in that the same thing is rendered in two different files (/movies/edit & /user_movies/edit) so that I can pass the appropriate error messages. There must be a better way to do this. 
 

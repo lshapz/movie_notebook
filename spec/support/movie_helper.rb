@@ -1,5 +1,14 @@
 module MovieHelper
 
+def log_in
+  @user = User.create(name: "laura", password: "password")
+  page.set_rack_session(user_id: @user.id)
+  # visit new_session_path
+  # byebug
+  # fill_in('name', :with => "laura")
+  # fill_in('password', :with => "password")
+  # click_button('Submit')
+end
 
 def new_movie
   @director = Director.find_or_create_by!(name: "Alan Smithee")
