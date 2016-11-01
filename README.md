@@ -21,7 +21,7 @@ To Do List (not in order of priority at all):
   2) IMDb poster API is cool, but I don't want to add it till much later, to keep page-load time low during testing.
   2a) on the other hand I just added chartkick javascript so maybe get I'll started on that soon
 
-  3) Basic rspec/capybara tests have been implemented (and passed!) for Movie and Director. 
+  3) Basic rspec/capybara tests have been implemented for Movie and Director. They do not pass anymore. IDK why. 
 
     a) need tests for users and usermovies (model and controller/features)
 

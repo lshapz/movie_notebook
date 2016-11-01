@@ -26,7 +26,10 @@ describe 'Show page' do
   end
 
   it 'lists collaborators if exist' do
-    visit director_path(new_movie)
+    new_movie
+    @director.collab = "Smith Alan"
+    @director.save
+    visit director_path(@director)
     expect(page).to have_text(@director.collab)
   end 
 end

@@ -1,4 +1,4 @@
-require 'byebug'
+  require 'byebug'
 class Omdb
 
   def self.search(title)
