@@ -18,18 +18,14 @@ To Do List (not in order of priority at all):
 
   1) The app is currently limited in its ability to handle movies with multiple directors - for now, it chooses the first listed name as director, and saves the other names as "collaborators" of the first guy. The collaborators are referenced on the director's page, but not yet associated to the movie on which they collaborated.
 
-  2) IMDb poster API is cool, but I don't want to add it till much later, to keep page-load time low during testing.
-  2a) on the other hand I just added chartkick javascript so maybe get I'll started on that soon
+  2) IMDb poster API is cool - look into finding that through adapter and adding it to the database/model
 
-  3) Basic rspec/capybara tests have been implemented and pass - so far. Keep them passing! 
+  3) I am going to remove the edit movie details fields for now I think and just trust OMDB - maybe I will add an Admin user who can edit those things (if current_user.name == Admin?)
 
-  4) I am using a weird hack for the edit/update of a movie, in that the same thing is rendered in two different files (/movies/edit & /user_movies/edit) so that I can pass the appropriate error messages. There must be a better way to do this. 
-  I am going to remove the edit movie details fields for now I think and just trust OMDB
-
-  5) it'd be cool if you could organize movies on your user page by directors and ratings and stuff, like a sortable spreadsheet instead of a plain html unordered list. (the pie chart is a start but not granular enough)
+  4) it'd be cool if you could organize movies on your user page by directors and ratings and stuff, like a sortable spreadsheet instead of a plain html unordered list. (the charts are a start but not granular enough)
 
 Possible Fork / New App Idea:
 
 OMDB's API can handle TV Season/Episode requests. 
-With the many ways to view television these days (Hulu, Netflix, Amazon, actual TV), it's hard to keep track of the last episode you've seen of any given show. Perhaps a "Last Seen" app?
+With the many ways to view television these days (Hulu, Netflix, Amazon, actual TV), it's hard to keep track of the last episode you've seen of any given show. Perhaps a "Last Episode I've Seen" app? 
 http://www.omdbapi.com/?t=Game%20of%20Thrones&Season=1&Episode=1
