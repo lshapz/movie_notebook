@@ -5,7 +5,7 @@ RSpec.describe ChoicesController, :type => :feature do
 describe 'Route to view' do
     it 'renders' do
       log_in
-
+      # byebug
       visit new_choice_path
       expect(page.status_code).to eq(200)
       expect(page).to have_css("h1", "Find A Movie By Searching IMDb!")

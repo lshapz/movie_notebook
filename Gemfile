@@ -20,7 +20,8 @@ gem 'bcrypt'
 gem 'faker'
 gem 'chartkick'
 gem 'bootstrap-sass', '~> 3.3.6'
-
+gem 'groupdate'
+gem 'poltergeist'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
