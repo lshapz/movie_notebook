@@ -55,6 +55,8 @@ class MoviesController < ApplicationController
     else
       @opinion = check_me
     end 
+    
+    render 'user_movies/edit'
      # byebug
   end
 

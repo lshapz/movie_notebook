@@ -24,16 +24,28 @@ def movie_two
 end
 
 def citizen_kane
+    log_in
+    visit new_choice_path
     fill_in('choice[title]', :with => "Citizen Kane")
     click_button('Search')
 end
 
-# def rate_kane(rating)
-#     citizen_kane
-#     choose ('imdbID_tt0033467')
-#     fill_in('rating', with: rating)
-#     click_button('Choose')
-# end
+
+def rate_kane(rating, year)
+    citizen_kane
+    choose ('imdbID_tt0033467')
+    fill_in('rating', with: rating)
+    fill_in('year_seen', with: year)
+    click_button('Choose')
+end
+
+def edit_rating(rating, year)
+    click_button("Edit Movie")
+    fill_in('rating', with: rating)
+    fill_in('year_seen', with: year)
+    check('big_screen')
+    click_button('Update Opinion')
+end
 
 
 end 

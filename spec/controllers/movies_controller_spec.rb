@@ -66,28 +66,28 @@ end
       # end 
   end
 
-  describe 'Edit Page' do 
-    it 'is accessible from a movie show page' do
-        log_in
-        visit movie_path(new_movie)
-        # byebug
-        expect(page).to have_button("Edit Movie")
-      end
+  # describe 'Edit Page' do 
+  #   it 'is accessible from a movie show page' do
+  #       log_in
+  #       visit movie_path(new_movie)
+  #       # byebug
+  #       expect(page).to have_button("Edit Movie")
+  #     end
 
-    it 'renders the form with the existing values filled in' do
-        log_in
-        visit edit_movie_path(new_movie)
-        expect(page).to have_css("input#movie_title")
-      end
+  #   it 'renders the form with the existing values filled in' do
+  #       log_in
+  #       visit edit_movie_path(new_movie)
+  #       expect(page).to have_css("input#movie_title")
+  #     end
 
-    it 'outputs an error on invalid value' do
-        log_in
-        visit edit_movie_path(new_movie)
-        fill_in("movie[year]", :with => "10")
-        click_button('Update Movie')
-        expect(page).to have_text ("is before movies existed")
-      end
-  end 
+  #   it 'outputs an error on invalid value' do
+  #       log_in
+  #       visit edit_movie_path(new_movie)
+  #       fill_in("movie[year]", :with => "10")
+  #       click_button('Update Movie')
+  #       expect(page).to have_text ("is before movies existed")
+  #     end
+  # end 
 
 
 end

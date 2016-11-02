@@ -21,15 +21,10 @@ To Do List (not in order of priority at all):
   2) IMDb poster API is cool, but I don't want to add it till much later, to keep page-load time low during testing.
   2a) on the other hand I just added chartkick javascript so maybe get I'll started on that soon
 
-  3) Basic rspec/capybara tests have been implemented for Movie and Director. More tests are needed: 
-    a) user model 
-    b) users controller
-    c) choice model
-    d) choices controller 
-    e) user_movie model
-    f) user_movie controller
+  3) Basic rspec/capybara tests have been implemented and pass - so far. Keep them passing! 
 
   4) I am using a weird hack for the edit/update of a movie, in that the same thing is rendered in two different files (/movies/edit & /user_movies/edit) so that I can pass the appropriate error messages. There must be a better way to do this. 
+  I am going to remove the edit movie details fields for now I think and just trust OMDB
 
   5) it'd be cool if you could organize movies on your user page by directors and ratings and stuff, like a sortable spreadsheet instead of a plain html unordered list. (the pie chart is a start but not granular enough)
 
