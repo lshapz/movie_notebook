@@ -7,14 +7,19 @@
 
 
     <title>Notebook</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/application.css" media="all" title="no title">
+    %= stylesheet_link_tag 'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag "http://www.google.com/jsapi", "chartkick" %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
 
 
   </head>
 
-  <body>    <header class="navbar navbar-fixed-top navbar-inverse">
+  <body>    
+  <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <nav>
           <ul class="nav navbar-nav navbar-right">
@@ -38,8 +43,8 @@
     <% end %>
   
     <%= yield %>
-    <script src="https://www.google.com/jsapi"></script>
-    <script src="chartkick.js"></script>
+
+   <
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
