@@ -1,0 +1,16 @@
+<h1>Welcome to your Movie Notebook!</h1>
+
+<p>Movie notebook is a place where you can keep a log of movies you've seen and what you thought about them.</p>
+
+<p>It is based on a physical notebook kept by my father in his cinephile youth.</p>
+
+<p>It was created as an experiment in Ruby on Rails and is still a work in progress, so please report any bugs you find to the Github repo!</p>
+
+</p>
+<p><%= button_to "View on Github!", "http://github.com/lshapz/movie_notebook" %></p>
+<p><% if session[:user_id] %>
+<% @user = User.find(session[:user_id]) %>
+<%= button_to 'See Your Profile', user_path(@user)  %>
+<% else %>
+<%= button_to 'Log In', new_session_path  %>
+<% end %></p>

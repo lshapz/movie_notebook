@@ -36,7 +36,7 @@ class MoviesController < ApplicationController
     if !temp_movie && params["imdbID"]
       new_movie = Omdb.newify(params["imdbID"])
       @movie = Movie.create(new_movie)
-    elsif params["movie"]["imdbID"]
+    elsif !temp_movie && params["movie"]["imdbID"]
       # byebug
       @director = Director.find_or_create_by(name: params[:movie][:director])
       params[:movie][:director_id] = @director.id

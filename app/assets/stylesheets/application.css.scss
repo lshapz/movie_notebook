@@ -2,8 +2,12 @@
 @import "bootstrap";
 
   body {
-  padding-top: 75px;
+  padding-top: 12px;
   margin: 2%;
+}
+
+li > #dropdown-menu{
+  list-style-type: none;
 }
 
 #title {
@@ -44,8 +48,7 @@
     }
 
     li {
-      list-style-type: square;
-      padding: 10px;
+      padding: 5px;
     }
 
 
