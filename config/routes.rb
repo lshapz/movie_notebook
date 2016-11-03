@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/' => 'application#index'
   resources :sessions, except: ['destroy', 'create']
   get '/login' => 'sessions#new', as: :new_session_path
+  get '/add_manually' => 'movies#manual'
   resources :users
   resources :choices 
   resources :directors

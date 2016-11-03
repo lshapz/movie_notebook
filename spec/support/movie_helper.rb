@@ -40,7 +40,7 @@ def rate_kane(rating, year)
 end
 
 def edit_rating(rating, year)
-    click_button("Edit Movie")
+    click_button("Edit Your Opinion")
     fill_in('rating', with: rating)
     fill_in('year_seen', with: year)
     check('big_screen')

@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def show 
+    @user = User.find(current_user)
     @opinion = UserMovie.find_by(movie_id: @movie.id, user_id: session[:user_id])
     # byebug
     sql_feelings = UserMovie.find_by_sql("select rating, count(*) as count from user_movies where movie_id = #{@movie.id} group by rating order by rating")
@@ -23,17 +24,27 @@ class MoviesController < ApplicationController
   def new
     @movie = Movie.new
   end
+  def manual
+    @user = User.find(current_user)
+    @movie = Movie.new
+  end
 
   def create
     temp_movie = Movie.find_by(imdbID: params["imdbID"])
-    if !temp_movie 
+    if !temp_movie && params["imdbID"]
       new_movie = Omdb.newify(params["imdbID"])
       @movie = Movie.create(new_movie)
+    elsif params["movie"]["imdbID"]
+      # byebug
+      @director = Director.find_or_create_by(name: params[:movie][:director])
+      params[:movie][:director_id] = @director.id
+      params[:movie][:link] = "http://imdb.com/title/" + params[:movie]['imdbID']
+      @movie = Movie.create(movie_params)
     else 
       @movie = temp_movie 
     end
     #byebug
-    if !params[:rating].empty? && !params[:year_seen].empty? && !session[:user_id].nil?
+    if params[:rating] && !params[:rating].empty? && !params[:year_seen].empty? && !session[:user_id].nil?
       @opinion = UserMovie.new(user_id: current_user, movie_id: @movie.id, rating: params[:rating], year_seen: params[:year_seen], big_screen: params[:big_screen])
       if @opinion.save
         redirect_to movie_path(@movie)
@@ -56,7 +67,7 @@ class MoviesController < ApplicationController
       @opinion = check_me
     end 
     
-    render 'user_movies/edit'
+    # render 'user_movies/edit'
      # byebug
   end
 
@@ -67,7 +78,7 @@ class MoviesController < ApplicationController
     if !@movie.valid?
       self.edit
       render :edit
-     else
+    else
       director = Director.find_or_create_by(name: params[:movie][:director]) 
       params[:movie][:director_id] = director.id
       parameter = params[:movie].permit(:title, :year, :rating, :director_id)
@@ -87,7 +98,7 @@ class MoviesController < ApplicationController
   private
 
   def movie_params
-    params[:movie].permit(:title, :director_id, :year, :link, :director)
+    params[:movie].permit(:title, :director_id, :year, :link, :imdbID)
   end
 
   def set_movie!

@@ -5,7 +5,7 @@ RSpec.describe UserMoviesController, :type => :feature do
 describe "#edit" do
   it "prefills the opinion field with your opinion if you already had one" do 
     rate_kane(5, 1999)
-    click_button("Edit Movie")
+    click_button("Edit Your Opinion")
     assert page.has_unchecked_field?('big_screen')
     expect(page).to have_selector("input[value='5']")
     expect(page).to have_selector("input[value='1999']")
