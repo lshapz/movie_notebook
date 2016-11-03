@@ -22,7 +22,11 @@ No Opinion - Yet
 
 <div id="container">
 <div id="footer">
+<% if !session[:user_id].nil?%>
 <p><%= button_to 'Edit Your Opinion', edit_user_movie_path(@movie),:method => "get"  %></p>
+<p><%= button_to 'Delete Your Opinion', @opinion, method: :delete, data: { confirm: 'Are you sure?' }%></p>  
+<% end %>
+
 <% if !session[:user_id].nil? && @user.name == "admin" %>
 <p><%= button_to 'Edit Movie Details', edit_movie_path(@movie),:method => "get"  %></p>
 <p><%= button_to 'Delete Movie', @movie, method: :delete, data: { confirm: 'Are you sure?' }%></p>

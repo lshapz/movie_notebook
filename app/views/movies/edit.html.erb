@@ -12,10 +12,10 @@
 
 <h1>Edit Movie Info</h1>
 <%= form_for @movie, method: "patch" do |f| -%>
-<p><%= f.label :title, "Title" %><%= f.text_field :title %></p>
-<p><%= f.label :year, "Year" %> <%= f.text_field :year %></p>
-<p><%= f.label :director, "Director" %><%= f.text_field :director, value: @movie.director.name %></p>
+<p>  <%= f.label :title, "Title" %><%= f.text_field :title %></p>
+<p>  <%= f.label :year, "Year" %><%= f.text_field :year %></p>
+<p>  <%= f.label :imdbID, "ImdbID" %><%= f.text_field :imdbID %></p>
+<p>  <%= f.label :director, "Director" %><%= text_field_tag :movie_director, @movie.director.name %></p>
 <p><%= f.submit "Update Movie", :name => 'Update Movie' %></p>
 <% end %>
-<% if session[:user_id] != nil %>
   
