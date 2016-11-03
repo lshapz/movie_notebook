@@ -12,6 +12,8 @@
     <%= stylesheet_link_tag 'application' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
@@ -22,7 +24,7 @@
   <nav class="navbar navbar-fixed-top navbar-inverse">          <div class="container fluid">
       <ul class="nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Navigation <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Navigation <span class="caret"></span></a>
           <ul class="dropdown-menu">
              <li> <%= link_to 'See All Movies', movies_path  %></li>
             <li><%= link_to 'See All Directors', directors_path  %></li>
@@ -34,6 +36,11 @@
         <%= link_to 'Log In', new_session_path  %>
       <% end %></li>
       </ul>
+      <script>
+$(document).ready(function(){
+    $(".dropdown-toggle").dropdown();
+});
+</script>
       </li>
       </ul>
 
