@@ -1,5 +1,7 @@
 MovieNotebook.rails 
 
+This app is live on heroku! Check it out at https://movie-notebook.herokuapp.com/
+
 One weekend, I was hoping to practice my brand-new Rails skills. I figured I would find an API and make a little app that searches it. 
 
 One of the first things I googled in this search was "IMDb API." Turns out they do not have an official one, but a kindly Internet fellow has created one, available at http://www.omdbapi.com/. 
