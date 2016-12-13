@@ -12,5 +12,5 @@
 <% @user = User.find(session[:user_id]) %>
 <%= button_to 'See Your Profile', user_path(@user)  %>
 <% else %>
-<%= button_to 'Log In', new_session_path  %>
+<%= button_to 'Log In', session_path  %>
 <% end %></p>

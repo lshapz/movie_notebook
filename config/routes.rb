@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/' => 'application#index'
   resources :sessions, except: ['destroy', 'create']
-  get '/login' => 'sessions#new', as: :new_session_path
+  get '/login' => 'sessions#new' 
   get '/add_manually' => 'movies#manual'
   resources :users
   resources :choices 
