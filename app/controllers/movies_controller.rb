@@ -51,7 +51,9 @@ class MoviesController < ApplicationController
       if @opinion.save
         redirect_to movie_path(@movie)
       else
-        @moviesearch = [Choice.find_by(imdbID: params["imdbID"])]
+        choices = []
+        ObjectSpace.each_object(Choice) {|choice| choices << choice}
+        @moviesearch = choices.select {|obj| obj.imdbID == params["imdbID"]}
         render 'movies/new'
       end 
     else

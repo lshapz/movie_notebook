@@ -5,7 +5,7 @@ class Omdb
     movie_hash = RestClient.get('http://www.omdbapi.com/?', params: {s: title, r: 'json'})  
     @thing = JSON.parse(movie_hash)
     @coll = @thing["Search"].each_with_object([]) do |result, coll|
-      coll << Choice.find_or_create_by(title: result["Title"], year: result["Year"], imdbID: result["imdbID"])
+      coll << Choice.new(title: result["Title"], year: result["Year"], imdbID: result["imdbID"])
     end 
   end
 
